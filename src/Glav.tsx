@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
-import './2g.css';
+import './styles/2g.css';
 import { Link } from 'react-router-dom'
+import { IPicture } from './models/IPicture';
 
 export const Glav = () => {
+  const [pictures, setPictures] = useState<IPicture[]>([])
   const [isSearchVisible, setIsSearchVisible] = useState(false);
 
-  const handleSearchClick = () => {
+  function selectPictures(selectedPictures: IPicture[]) {
+    setPictures(prev => [...selectedPictures])
+  }
+
+  const selectHandler = (selectedPictures: IPicture[]) => {
+    setPictures(selectedPictures);
+  }
+
+  const clickSearchHandler = () => {
     setIsSearchVisible(true);
   };
 
-  const handleSearchClose = () => {
+  const closeSearchHandler = () => {
     setIsSearchVisible(false);
   };
 
@@ -24,12 +34,40 @@ export const Glav = () => {
               </div>
             </Link>
 
-            <div className="v2_46"></div>
-            <div className="v2_47"></div>
-            <div className="v2_48"></div>
-            <div className="v2_49"></div>
             
-            <button className="search" onClick={handleSearchClick}>
+            <Link to="/likapicture:id" className="button-picture">
+              <div className="button-container">
+                <div className="button-inner">
+                  <div className="v2_46"></div>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/likapicture:id" className="button-picture">
+              <div className="button-container">
+                <div className="button-inner">
+                  <div className="v2_47"></div>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/likapicture:id" className="button-picture">
+              <div className="button-container">
+                <div className="button-inner">
+                  <div className="v2_48"></div>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/likapicture:id" className="button-picture">
+              <div className="button-container">
+                <div className="button-inner">
+                  <div className="v2_49"></div>
+                </div>
+              </div>
+            </Link>
+            
+            <button className="search" onClick={clickSearchHandler}>
                <div className="button-inner">
                 <div className="search"></div>
                 <div className="lupa"></div>
@@ -37,12 +75,12 @@ export const Glav = () => {
                </div>
             </button>
             
-            {isSearchVisible && (
+            { isSearchVisible && (
             <div className="search-container">
               <div className="search-overlay" />
               <div>
                 <input className="search-input" type="text" placeholder="Введите тег" />
-                <button className="search-close-button" onClick={handleSearchClose}>X
+                <button className="search-close-button" onClick={closeSearchHandler}>X
                 </button>
               </div>
              </div>

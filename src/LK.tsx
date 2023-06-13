@@ -1,26 +1,31 @@
-import { React, useRef, useState } from 'react';
-import './3lk.css';
+import { useRef, useState } from 'react';
+import './styles/3lk.css';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 export const LK = () => {
+  const fileInputRef = useRef<any>(null);
+  const [selectedImage, setSelectedImage] = useState<File>();
+  const [selectedImageUrl, setSelectedImageUrl] = useState('')
+
+  const handleButtonClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const changeFileHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files != null){
+      setSelectedImage(event.target.files[0]);
+      setSelectedImageUrl(URL.createObjectURL(event.target.files[0]));
+
+      const formData = new FormData();
+      formData.append("file", selectedImage as File)
+    }
+  };
   
-  const fileInputRef = useRef(null);
-    const [selectedImage, setSelectedImage] = useState(null);
-
-    const handleButtonClick = () => {
-    fileInputRef.current.click();
-    };
-
-    const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(URL.createObjectURL(file));
-    };
-   
-    return (
-    
+  return (    
     <div className="v2_52">
       <div className="v2_124"></div>
-      <span className="v2_125">логин</span>
+      <span className="v2_125">{localStorage.getItem("login")}</span>
       <div className="v29_27">
       <div className="v29_16"></div>
       <div className="v29_17"></div>
@@ -30,14 +35,13 @@ export const LK = () => {
       <div className="v29_21"></div>
       <div className="v48_46"></div>
     </div>
-      <span className="v29_14"> ср. оценка</span>
+      <span className="v29_14">{localStorage.getItem("avgScore")}</span>
       <div className="v29_15"></div>
       
-      <input
-      type="file"
-      style={{ display: 'none' }}
-      ref={fileInputRef}
-      onChange={handleFileChange}
+      <input type="file"
+        style={{ display: 'none' }}
+        ref={fileInputRef}
+        onChange={changeFileHandler}
       />
       <button className="izm" onClick={handleButtonClick}>
       <div className="str1"></div>
@@ -46,7 +50,7 @@ export const LK = () => {
       </button>
       <div className="image-container">
         {selectedImage && (
-        <img src={selectedImage} alt="Загруженное изображение" className="uploaded-im" />
+          <img src={selectedImageUrl} alt="Загруженное изображение" className="uploaded-im" />
         )}
         </div>
             
@@ -55,7 +59,7 @@ export const LK = () => {
         <div className="button-container">
           <div className="button-inner">
             <div className="v29_22"></div>
-            <span className="v29_23">Выход</span>
+            <span onClick={() => localStorage.clear()} className="v29_23">Выход</span>
           </div>
         </div>
       </Link>

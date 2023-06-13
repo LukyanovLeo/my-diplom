@@ -1,14 +1,13 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Links } from './Links';
 import { Glav } from './Glav';
 import { LK } from './LK';
 import { LKPicture } from './LKPicture';
-import { LoadPicture } from './LoadPicture';
+import { PictureUploadPage } from './PictureUploadPage';
 import { Login } from './Login';
-import { Sigin } from './Sigin';
+import { Register } from './Register';
 
-export const useRoutes = (isAuthenticated) => {
+export const useRoutes = (isAuthenticated: boolean) => {
   if (isAuthenticated) {
     return (
       <Routes>
@@ -16,9 +15,9 @@ export const useRoutes = (isAuthenticated) => {
         <Route path="/glavst" element={<Glav />} />
         <Route path="/lika:id" element={<LK />} />
         <Route path="/likapicture:id" element={<LKPicture />} />
-        <Route path="/loadingpicture" element={<LoadPicture />} />
+        <Route path="/loadingpicture" element={<PictureUploadPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/sigin" element={<Sigin />} />
+        <Route path="/sigin" element={<Register />} />
       </Routes>
     );
   }
