@@ -23,10 +23,10 @@ export const Register = () => {
                 repeatPassword: repeatPassword,
                 avgScore: 0.0,
             }
-            const response = await axios.post<IRegister>('http://localhost:5555/user/register', userData)
-            localStorage.setItem('id', response.data.id.toString());
+            const response = await axios.post<IRegister>('https://localhost:5555/user/register', userData)
+            localStorage.setItem('id', response.data.id?.toString());
             localStorage.setItem('login', response.data.login);
-            localStorage.setItem('avgScore', response.data.avgScore.toFixed(1).toString());
+            localStorage.setItem('avgScore', response.data.avgScore?.toFixed(1).toString());
 
             navigate('/glavst');
         } else {

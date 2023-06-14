@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Links } from './Links';
+import { Links } from './Main';
 import { Glav } from './Glav';
 import { LK } from './LK';
 import { LKPicture } from './LKPicture';

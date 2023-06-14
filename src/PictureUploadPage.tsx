@@ -41,7 +41,7 @@ export const PictureUploadPage = () => {
       picture: newPicture,
     };
     try {
-      const response = await axios.post('http://localhost:5555/work/add', picture, {
+      const response = await axios.post('https://localhost:5555/work/add', picture, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -91,7 +91,7 @@ export const PictureUploadPage = () => {
         </input>
       </div>
           
-        {/* <Link to="/lika:id" className="button-lkz"> */}
+        <Link to="/lika:id" className="button-lkz">
           <div className="button-container" onClick={saveImageHandler}>
             <div className="button-inner">
               <div className="v2_140"></div>
@@ -100,9 +100,9 @@ export const PictureUploadPage = () => {
               <div className="v4_28"></div>
             </div>
           </div>
-        {/* </Link> */}
+        </Link>
 
-      {/* <Link to="/lika:id" className="button-lk">
+      <Link to="/lika:id" className="button-lk">
         <div className="button-container">
           <div className="button-inner">
             <div className="v54_88"></div>
@@ -111,7 +111,7 @@ export const PictureUploadPage = () => {
             <div className="v54_92"></div>
           </div>
         </div>
-      </Link> */}
+      </Link>
     </div>
   );
 };
